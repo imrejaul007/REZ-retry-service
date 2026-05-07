@@ -1,39 +1,6 @@
 services:
   - type: web
-    name: rez-retry-service
-    runtime: docker
-    dockerfilePath: Dockerfile
-    region: oregon
-    plan: starter
-    scaling:
-      min_instances: 1
-      max_instances: 3
-    envVars:
-      - key: NODE_ENV
-        value: production
-      - key: PORT
-        value: 10000
-      - key: REDIS_URL
-        sync: false
-      - key: LOG_LEVEL
-        value: info
-    healthCheckPath: /health
-    autoDeploy: true
-
-  - type: worker
-    name: rez-retry-worker
-    runtime: docker
-    dockerfilePath: Dockerfile.worker
-    region: oregon
-    plan: starter
-    scaling:
-      min_instances: 1
-      max_instances: 3
-    envVars:
-      - key: NODE_ENV
-        value: production
-      - key: REDIS_URL
-        sync: false
-      - key: LOG_LEVEL
-        value: info
-    autoDeploy: true
+    name: service
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
